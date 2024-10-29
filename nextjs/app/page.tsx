@@ -1,5 +1,27 @@
 import styles from "./page.module.css";
 
 export default function Home() {
-  return <div className={styles.page}></div>;
+  const items = [
+    {
+      id: 1,
+      type: "command",
+      command: "pwd",
+    },
+    {
+      id: 2,
+      type: "output",
+      output:
+        "/home/richardimaoka/ghq/src/github.com/richardimaoka/imaginary-zoo/nextjs",
+    },
+  ];
+
+  return (
+    <div className={styles.page}>
+      {items.map((x) => (
+        <pre key={x.id}>
+          <code>{x.type === "command" ? x.command : x.output}</code>
+        </pre>
+      ))}
+    </div>
+  );
 }
