@@ -22,6 +22,11 @@ export default function Home() {
           <code>{x.type === "command" ? x.command : x.output}</code>
         </pre>
       ))}
+      <pre>
+        <code>
+          this is a line in <span style={{ color: "blue" }}>color</span>
+        </code>
+      </pre>
     </div>
   );
 }
