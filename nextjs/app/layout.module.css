@@ -9,6 +9,8 @@
   grid-template-areas: ". center.";
 }
 
-.component > *:nth-child(1) {
+.center {
   grid-area: center;
+  height: 100%;
+  position: relative;
 }

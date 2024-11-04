@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import styles from "./layout.module.css";
+import { Controls } from "./components/controls/Controls";
 
 // import localFont from "next/font/local";
 
@@ -28,7 +29,12 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className={styles.component}>{children}</div>
+        <div className={styles.component}>
+          <div className={styles.center}>
+            {children}
+            <Controls />
+          </div>
+        </div>
       </body>
     </html>
   );
