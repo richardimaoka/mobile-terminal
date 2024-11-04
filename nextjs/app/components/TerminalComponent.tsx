@@ -35,6 +35,11 @@ export default function TerminalComponent() {
       // command: "sleep 100000000000000",
       command: "echo abcde",
     },
+    {
+      id: 3,
+      type: "output",
+      output: "abcde",
+    },
   ];
 
   return (

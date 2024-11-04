@@ -6,3 +6,7 @@
   white-space: pre-wrap;
   width: 100%;
 }
+
+.output {
+  color: rgb(211, 211, 211);
+}
