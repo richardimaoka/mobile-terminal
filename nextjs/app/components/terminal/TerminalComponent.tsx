@@ -16,31 +16,40 @@ type OutputProps = {
   output: string;
 };
 
-type ItemTypeExtention = {
-  id: number;
-};
+// type ItemTypeExtention = {
+//   id: number;
+// };
 
-type ItemType = (CommandProps | OutputProps) & ItemTypeExtention;
+type ItemType = CommandProps | OutputProps; //& ItemTypeExtention;
 
 const allItems: ItemType[] = [
   {
-    id: 1,
     type: "command",
     prompt: "myuser>",
     // command: "sleep 100000000000000",
     command: "echo abcde",
   },
   {
-    id: 2,
-    type: "command",
-    prompt: "myuser>",
-    // command: "sleep 100000000000000",
-    command: "echo abcde",
-  },
-  {
-    id: 3,
     type: "output",
     output: "abcde",
+  },
+  {
+    type: "command",
+    prompt: "myuser>",
+    command: "echo '1+1'",
+  },
+  {
+    type: "output",
+    output: "1+1",
+  },
+  {
+    type: "command",
+    prompt: "myuser>",
+    command: "echo '1+1' | bc",
+  },
+  {
+    type: "output",
+    output: "2",
   },
 ];
 
@@ -68,14 +77,14 @@ export default function TerminalComponent() {
           case "command":
             return (
               <Command
-                key={x.id}
+                key={i}
                 prompt={x.prompt}
                 command={x.command}
                 beforeRun={i === items.length - 1}
               />
             );
           case "output":
-            return <Output key={x.id} output={x.output} />;
+            return <Output key={i} output={x.output} />;
         }
       })}
     </div>
