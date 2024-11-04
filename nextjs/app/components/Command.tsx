@@ -1,5 +1,5 @@
 import { CommandAlreadyExecuted } from "./CommandAlreadyExecuted";
-import { CommandWaitingForRun } from "./CommandWaitingForRun";
+import { CommandBeforeRun } from "./CommandBeforeRun";
 
 interface Props {
   prompt?: string;
@@ -9,7 +9,7 @@ interface Props {
 
 export function Command(props: Props) {
   return props.beforeRun ? (
-    <CommandWaitingForRun prompt={props.prompt} command={props.command} />
+    <CommandBeforeRun prompt={props.prompt} command={props.command} />
   ) : (
     <CommandAlreadyExecuted prompt={props.prompt} command={props.command} />
   );
