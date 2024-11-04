@@ -8,13 +8,19 @@ export default function TerminalComponent() {
       type: "command",
       prompt: "myuser>",
       command: "sleep 100000000000000",
+      beforeRun: true,
     },
   ];
 
   return (
     <div className={styles.comoponent}>
       {items.map((x) => (
-        <Command key={x.id} prompt={x.prompt} command={x.command}></Command>
+        <Command
+          key={x.id}
+          prompt={x.prompt}
+          command={x.command}
+          beforeRun={x.beforeRun}
+        ></Command>
       ))}
     </div>
   );
