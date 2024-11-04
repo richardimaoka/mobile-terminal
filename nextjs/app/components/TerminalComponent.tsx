@@ -2,23 +2,22 @@ import styles from "./TerminalComponent.module.css";
 import { Command } from "./Command";
 import { Output } from "./Output";
 
-type CommandPropsExtended = {
+type CommandProps = {
   type: "command";
   prompt?: string;
   command: string;
 };
 
-type OutputPropsExtended = {
+type OutputProps = {
   type: "output";
   output: string;
 };
 
-type LastElementExtension = {
+type CommonProps = {
   isLastElement: boolean;
 };
 
-type CommandOrOutputProps = (CommandPropsExtended | OutputPropsExtended) &
-  LastElementExtension;
+type CommandOrOutputProps = (CommandProps | OutputProps) & CommonProps;
 
 function CommandOrOutput(props: CommandOrOutputProps): JSX.Element {
   switch (props.type) {
@@ -36,10 +35,10 @@ function CommandOrOutput(props: CommandOrOutputProps): JSX.Element {
 }
 
 export default function TerminalComponent() {
-  type IdExtention = {
+  type ItemTypeExtention = {
     id: number;
   };
-  type ItemType = (CommandPropsExtended | OutputPropsExtended) & IdExtention;
+  type ItemType = (CommandProps | OutputProps) & ItemTypeExtention;
 
   const items: ItemType[] = [
     {
