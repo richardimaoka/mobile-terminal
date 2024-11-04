@@ -1,15 +1,53 @@
-import { Command } from "./Command";
 import styles from "./TerminalComponent.module.css";
+import { Command } from "./Command";
+import { Output } from "./Output";
+
+type CommandPropsExtended = {
+  type: "command";
+  prompt?: string;
+  command: string;
+};
+
+type OutputPropsExtended = {
+  type: "output";
+  output: string;
+};
+
+type LastElementExtension = {
+  isLastElement: boolean;
+};
+
+type CommandOrOutputProps = (CommandPropsExtended | OutputPropsExtended) &
+  LastElementExtension;
+
+function CommandOrOutput(props: CommandOrOutputProps): JSX.Element {
+  switch (props.type) {
+    case "command":
+      return (
+        <Command
+          prompt={props.prompt}
+          command={props.command}
+          beforeRun={props.isLastElement}
+        />
+      );
+    case "output":
+      return <Output output={props.output} />;
+  }
+}
 
 export default function TerminalComponent() {
-  const items = [
+  type IdExtention = {
+    id: number;
+  };
+  type ItemType = (CommandPropsExtended | OutputPropsExtended) & IdExtention;
+
+  const items: ItemType[] = [
     {
       id: 1,
       type: "command",
       prompt: "myuser>",
       // command: "sleep 100000000000000",
       command: "echo abcde",
-      beforeRun: true,
     },
     {
       id: 2,
@@ -17,19 +55,17 @@ export default function TerminalComponent() {
       prompt: "myuser>",
       // command: "sleep 100000000000000",
       command: "echo abcde",
-      beforeRun: true,
     },
   ];
 
   return (
     <div className={styles.comoponent}>
       {items.map((x, i) => (
-        <Command
+        <CommandOrOutput
           key={x.id}
-          prompt={x.prompt}
-          command={x.command}
-          beforeRun={items.length -1 === i}
-        ></Command>
+          {...x}
+          isLastElement={items.length - 1 === i}
+        />
       ))}
     </div>
   );

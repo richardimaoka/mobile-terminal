@@ -1,0 +1,8 @@
+.component {
+  /* Cancel default <pre>'s margin */
+  margin: 0;
+
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  width: 100%;
+}

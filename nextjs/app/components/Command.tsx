@@ -7,6 +7,8 @@ interface Props {
   beforeRun?: boolean;
 }
 
+export type CommandProps = Props;
+
 export function Command(props: Props) {
   return props.beforeRun ? (
     <CommandBeforeRun prompt={props.prompt} command={props.command} />
