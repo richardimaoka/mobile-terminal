@@ -1,4 +1,4 @@
-import styles from "./Command.module.css";
+import { CommandAlreadyExecuted } from "./CommandAlreadyExecuted";
 
 interface Props {
   prompt?: string;
@@ -6,13 +6,7 @@ interface Props {
 }
 
 export function Command(props: Props) {
-  const prompt = props.prompt || ">";
-
   return (
-    <pre className={styles.component}>
-      <code className={styles.prompt}>{prompt}</code>
-      <span /*whitespace*/> </span>
-      <code className={styles.command}>{props.command}</code>
-    </pre>
+    <CommandAlreadyExecuted prompt={props.prompt} command={props.command} />
   );
 }
