@@ -1,0 +1,14 @@
+.component {
+  min-height: 100svh;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0px, 1fr) /* minimum padding = 8px */
+    minmax(auto, 800px)
+    minmax(0px, 1fr); /* minimum padding = 8px */
+  grid-template-areas: ". center.";
+}
+
+.component > *:nth-child(1) {
+  grid-area: center;
+}
