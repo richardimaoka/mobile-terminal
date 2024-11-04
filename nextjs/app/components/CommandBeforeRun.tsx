@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 import { CommandWaitingForRun } from "./CommandWaitingForRun";
 import { CommandTypingAnimation } from "./CommandTypingAnimation";

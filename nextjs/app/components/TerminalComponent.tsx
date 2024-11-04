@@ -1,6 +1,9 @@
+"use client";
+
 import styles from "./TerminalComponent.module.css";
 import { Command } from "./Command";
 import { Output } from "./Output";
+import { useState } from "react";
 
 export default function TerminalComponent() {
   type CommandProps = {
@@ -20,7 +23,7 @@ export default function TerminalComponent() {
 
   type ItemType = (CommandProps | OutputProps) & ItemTypeExtention;
 
-  const items: ItemType[] = [
+  const allItems: ItemType[] = [
     {
       id: 1,
       type: "command",
@@ -42,6 +45,9 @@ export default function TerminalComponent() {
     },
   ];
 
+  const [currentStep /*, setCurrentStep*/] = useState(1);
+  const items = allItems.filter((_, i) => i <= currentStep);
+
   return (
     <div className={styles.comoponent}>
       {items.map((x, i): JSX.Element => {
@@ -49,13 +55,14 @@ export default function TerminalComponent() {
           case "command":
             return (
               <Command
+                key={x.id}
                 prompt={x.prompt}
                 command={x.command}
                 beforeRun={i === items.length - 1}
               />
             );
           case "output":
-            return <Output output={x.output} />;
+            return <Output key={x.id} output={x.output} />;
         }
       })}
     </div>
